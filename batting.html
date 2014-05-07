@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- your webpage info goes here -->
+
+    <title>Batting</title>
+	
+	<meta name="author" content="your name" />
+	<meta name="description" content="" />
+	<meta http-equiv="Content-type" content="text/html"; charset="utf-8">
+<!-- you should always add your stylesheet (css) in the head tag so that it starts loading before the page html is being displayed -->	
+	<link rel="stylesheet" href="public/style.css" type="text/css" />
+	
+</head>
+
+<script src="codebase/dhtmlxcommon.js" type="text/javascript" charset="utf-8"></script>
+    <script src="codebase/dhtmlxgrid.js" type="text/javascript" charset="utf-8"></script>
+    <script src="codebase/dhtmlxgridcell.js" type="text/javascript" charset="utf-8"></script>
+    <script src="codebase/dhtmlxdataprocessor.js" type="text/javascript" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="codebase/dhtmlxgrid.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="codebase/skins/dhtmlxgrid_dhx_skyblue.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<script type="text/javascript" charset="utf-8">
+    function init() {
+        mygrid = new dhtmlXGridObject("Bgrid_here");
+        mygrid.setImagePath("../../codebase/imgs/");
+        mygrid.setHeader("UPI, Team, Games (G), At Bats (AB), Runs (R), Hits (H), Doubles (2B), Triples (3B), Home Runs (HR), Runs Batted In (RBI), Walks (BB), Stikeouts (K), Stolen Bases (SB), Caught Stealing (CS), Batting Average (AVG), Slugging Percentage (SLG)");
+        mygrid.setColumnIds("PlayerID,TeamID,G,AB,R,H,2B,3B,HR,RBI,BB,SO,SB,CS,AVG,SLG");
+        mygrid.setInitWidths("150,100,50,50,50,50,50,50,50,120,50,50,100,100,120,150"); //16 fields
+        mygrid.setColTypes("ed,ed,ed,ed,ed,ed,ed,ed,ed,ed,ed,ed,ed,ed,ed,ed");
+        mygrid.setColSorting("str,str,int,int,int,int,int,int,int,int,int,int,int,int,float,float");
+        mygrid.setSkin("dhx_skyblue");
+        mygrid.init();
+		 mygrid.load("/Batting", "js");
+    }
+</script>   	
+    
+<body onload="init();">
+
+<!-- webpage content goes here in the body -->
+
+	<div id="page">
+		<div id="logo">
+			<h1><img src="public/mlbstats.png" width="250" height="120" alt="" align="left" hspace="20"/><a href="/" id="logoLink">Batting</a></h1>
+		</div>
+		<div id="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+              <li><a href="master.html">Players</a></li> 
+				<li><a href="pitching.html">Pitching</a></li>
+              <li><a href="fielding.html">Fielding</a></li>
+              <li><a href="about.html">About</a></li> 
+			</ul>	
+		</div>
+		<div id="content">
+			<h2>Batting</h2>
+            
+            <p>Welcome to the Batting records for the 2013 MLB Season</p>
+            <p> Please use the Unique Player Identification from the Master table to find player stats.</p>
+            <div id="Bgrid_here" style="width:1300px; height:550px;"></div>
+          
+		<div id="footer">
+			<p>
+				Webpage made by <a href="/" target="_blank">Alec Brownlie</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

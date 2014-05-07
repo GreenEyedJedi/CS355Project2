@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- your webpage info goes here -->
+
+    <title>Players</title>
+	
+	<meta name="author" content="your name" />
+	<meta name="description" content="" />
+	<meta http-equiv="Content-type" content="text/html"; charset="utf-8">
+<!-- you should always add your stylesheet (css) in the head tag so that it starts loading before the page html is being displayed -->	
+	<link rel="stylesheet" href="public/style.css" type="text/css" />
+	
+</head>
+
+<script src="codebase/dhtmlxcommon.js" type="text/javascript" charset="utf-8"></script>
+    <script src="codebase/dhtmlxgrid.js" type="text/javascript" charset="utf-8"></script>
+    <script src="codebase/dhtmlxgridcell.js" type="text/javascript" charset="utf-8"></script>
+    <script src="codebase/dhtmlxdataprocessor.js" type="text/javascript" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="codebase/dhtmlxgrid.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="codebase/skins/dhtmlxgrid_dhx_skyblue.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<script type="text/javascript" charset="utf-8">
+    function init() {
+        mygrid = new dhtmlXGridObject("Mgrid_here");
+        mygrid.setImagePath("../../codebase/imgs/");
+        mygrid.setHeader("First Name, Last Name, Team, Position, Height, Weight, Bats, Throws, College, Unique Player Identification (UPI)");
+        mygrid.setColumnIds("First_Name,Last_Name,TeamID,Position,Height,Weight,Bats,Throws,College,PlayerID");
+        mygrid.setInitWidths("80,100,50,50,55,50,50,50,130,100"); //16 fields
+        mygrid.setColTypes("ed,ed,ed,ed,ed,ed,ed,ed,ed,ed,ed");
+        mygrid.setColSorting("str,str,str,str,str,str,str,str,str,str,str");
+        mygrid.setSkin("dhx_skyblue");
+        mygrid.init();
+		 mygrid.load("/Master", "js");
+		 
+		 var dp = new dataProcessor("/Master");
+		 dp.init(mygrid);
+		 dp.enableDataNames(true);
+		 dp.setTransactionMode("POST", false);
+	}
+	
+	function addrow(){
+		var id = mygrid.uid();
+		mygrid.setActive(true);
+		mygrid.addRow(id, "First Name, Last Name, Team, Position, Height, Weight, Bat, Throws, College");
+	}
+	
+	function deleterow(){
+		mygrid.deleteSelectedRows();
+	}
+	
+</script>   	
+    
+<body onload="init();">
+
+<!-- webpage content goes here in the body -->
+
+	<div id="page">
+		<div id="logo">
+			<h1><img src="public/mlbstats.png" width="250" height="120" alt="" align="left" hspace="20"/><a href="/" id="logoLink">Players</a></h1>
+		</div>
+		<div id="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+              <li><a href="batting.html">Batting</a></li> 
+				<li><a href="pitching.html">Pitching</a></li>
+              <li><a href="fielding.html">Fielding</a></li>
+              <li><a href="about.html">About</a></li> 
+			</ul>	
+		</div>
+		<div id="content">
+			<h2>Players</h2>
+            
+            <p>This is where you will find all Player Information.</p>
+            <p>If you wish to look up Player Stats, please use the Unique Player Identification when you browse Batting, Pitching, and Fielding stats.</p>
+            <p>If you wish to Add a new player to the MLB Stats Database, just click on the button!</p>
+            <div id="Mgrid_here" style="width:988px; height:550px;"></div>
+            <br>
+            <input style="padding:6px;" type="button" value="Add a new player" onclick="addrow()">
+            <input style="padding:6px;" type="button" value="Delete the selected record" onclick="deleterow()">
+      
+          
+		<div id="footer">
+			<p>
+				Webpage made by <a href="/" target="_blank">Alec Brownlie</a>
+			</p>
+		</div>
+	</div>
+</body>
+
+
+</html>
